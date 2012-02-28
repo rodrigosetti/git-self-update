@@ -1,4 +1,4 @@
-== Git Self Update ==
+# Git Self Update
 
 The purpose of this project is to allow you install a self-updating script for
 a production environment files where the production environment is severely
@@ -20,7 +20,7 @@ The usage is:
 
 There is no backup of older data. It's not the purpose of the script.
 
-=== Examples ===
+## Examples
 
     $ ./self-update.sh johnsmith my-site
 
@@ -30,7 +30,7 @@ There is no backup of older data. It's not the purpose of the script.
 
     $ ./self-update.sh johnsmith my-site 'heads/stable' /var/www/site 'README *.sql config.php'
 
-=== TODO ===
+## TODO
 
  * Unix style command line and help
 
