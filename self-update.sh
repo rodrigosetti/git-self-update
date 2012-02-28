@@ -34,23 +34,23 @@ else
     EXCLUDED_PAT=''
 fi
 
-COMMIT_HASH=`curl https://api.github.com/repos/$USER_NAME/$REPO_NAME/git/refs/$STABLE_REF | grep 'sha'`
+COMMIT_HASH=`curl https://api.github.com/repos/$USER_NAME/$REPO_NAME/git/refs/$STABLE_REF | grep 'sha'` || exit 1
 
 function fetch_and_update() {
     # fetch new files
-    curl "https://nodeload.github.com/$USER_NAME/$REPO_NAME/tarball/master" | tar -x
+    curl "https://nodeload.github.com/$USER_NAME/$REPO_NAME/tarball/master" | tar -x || exit 1
 
     # remove patterns
     [ "$EXCLUDED_PAT" ] && cd $USER_NAME-$REPO_NAME-* && rm -rvf $EXCLUDED_PAT && cd ..
 
     # copy all files form repo to destination
-    cp -rv $USER_NAME-$REPO_NAME-*/* $DEST_DIR
+    cp -rv $USER_NAME-$REPO_NAME-*/* $DEST_DIR || exit 1
 
     # delete temporary fetched repo
-    rm -rf $USER_NAME-$REPO_NAME-*/
+    rm -rf $USER_NAME-$REPO_NAME-*/ || exit 1
 
     # updates file with last commit
-    echo "$COMMIT_HASH" > $LAST_COMMIT_FILE
+    echo "$COMMIT_HASH" > $LAST_COMMIT_FILE || exit 1
 }
 
 if [ -f $LAST_COMMIT_FILE ]; then
