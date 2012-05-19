@@ -38,7 +38,7 @@ COMMIT_HASH=`curl https://api.github.com/repos/$USER_NAME/$REPO_NAME/git/refs/$S
 
 function fetch_and_update() {
     # fetch new files
-    curl "https://nodeload.github.com/$USER_NAME/$REPO_NAME/tarball/master" | tar -x || exit 1
+    curl "http://nodeload.github.com/$USER_NAME/$REPO_NAME/tarball/master" | tar -x || exit 1
 
     # remove patterns
     [ "$EXCLUDED_PAT" ] && cd $USER_NAME-$REPO_NAME-* && rm -rvf $EXCLUDED_PAT && cd ..
